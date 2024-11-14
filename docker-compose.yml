@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: ["sh", "-c", "./bin/rails server -b 0.0.0.0"]
+    volumes:
+      - ".:/rails"
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+    depends_on:
+      - db
+    working_dir: /rails
+
+  db:
+    image: nouchka/sqlite3
+    volumes:
+      - ./db:/rails/db
+    environment:
+      - SQLITE_DATABASE_PATH=/rails/db/development.sqlite3
+
+volumes:
+  db:

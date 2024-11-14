@@ -1,24 +1,15 @@
-# README
+To build containers and start the project in local environment
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+ $ docker-compose up --build -d
+```
+Visit:
+http://0.0.0.0:3000/
 
-Things you may want to cover:
+To enter rails console in the container
 
-* Ruby version
+```bash
+$ docker-compose exec web bash
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+$ bin/rails console
+```
