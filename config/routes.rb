@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
-  root "home#index"
+  root to: 'home#show'
 
   match "/modern/*path", to: "home#index", via: :all
 
