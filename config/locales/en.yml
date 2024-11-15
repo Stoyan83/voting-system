@@ -1,1 +1,8 @@
 en:
+  navbar:
+    voting_system: "Voting System"
+    toggle_navigation: "Toggle navigation"
+    home: "Home"
+    sign_out: "Sign Out"
+    sign_in: "Sign In"
+    modern_view: "Modern View"
