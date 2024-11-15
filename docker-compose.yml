@@ -1,25 +1,31 @@
 version: '3.8'
 
 services:
-  web:
+  app:
     build: .
     command: ["sh", "-c", "./bin/rails server -b 0.0.0.0"]
     volumes:
-      - ".:/rails"
+      - ".:/app"
     ports:
       - "3000:3000"
     environment:
       - RAILS_ENV=development
     depends_on:
       - db
-    working_dir: /rails
+    working_dir: /app
+    networks:
+      - app-network
 
   db:
-    image: nouchka/sqlite3
+    image: nouchka/sqlite3:latest
     volumes:
-      - ./db:/rails/db
-    environment:
-      - SQLITE_DATABASE_PATH=/rails/db/development.sqlite3
+      - db:/app/db
+    networks:
+      - app-network
 
 volumes:
   db:
+
+networks:
+  app-network:
+    driver: bridge
