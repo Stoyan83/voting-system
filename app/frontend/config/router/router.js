@@ -6,15 +6,24 @@ import Home from "../../pages/Home"
 const router = createBrowserRouter(
   [
     {
-      path: "/",
-      errorElement: <NotFound />,
+      path: "*",
+      element: <></>
+    },
+    {
+      path: "/modern/*",
       children: [
-        { path: "/", element: <Home /> },
+        {
+          path: "home",
+          element: <Home />
+        },
+        {
+          path: "*",
+          element: <NotFound />
+        },
       ]
-    }
+    },
   ],
-  { // These flags clear deprecation warnings for React Router v7.
-    // https://reactrouter.com/en/main/upgrading/future
+  {
     future: {
       v7_startTransition: true,
       v7_fetcherPersist: true,

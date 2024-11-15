@@ -6,10 +6,8 @@ To build containers and start the project in local environment
 Visit:
 http://0.0.0.0:3000/
 
-To enter rails console in the container
+The 'bin/rails' command is executed inside the container, allowing you to run Rails commands
 
 ```bash
-$ docker-compose exec web bash
-
-$ bin/rails console
+$ docker-compose run web bin/rails
 ```
