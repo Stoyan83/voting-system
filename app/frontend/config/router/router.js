@@ -10,10 +10,6 @@ const router = createBrowserRouter(
       element: <></>
     },
     {
-      path: "/",
-      element: <Navigate to="/modern/home" />, // Handle root redirection in React
-    },
-    {
       path: "/modern/*",
       children: [
         {
