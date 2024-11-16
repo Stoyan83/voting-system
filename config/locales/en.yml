@@ -6,3 +6,8 @@ en:
     sign_out: "Sign Out"
     sign_in: "Sign In"
     modern_view: "Modern View"
+  activerecord:
+    errors:
+      models:
+        vote:
+          unique_vote: "with email %{email} has already voted for this choice"

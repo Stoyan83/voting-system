@@ -3,18 +3,13 @@ class VotesController < ApplicationController
   before_action :set_poll, only: [:create]
   before_action :set_choice, only: [:create]
 
-  def create
-    if user_already_voted
-      flash[:alert] = "You have already voted for this choice."
-    else
-      @vote = @choice.votes.create(user: current_user)
+  rescue_from ActiveRecord::RecordInvalid, with: :handle_errror
 
-      if @vote.save
-        flash[:notice] = "Your vote has been successfully recorded."
-      else
-        flash[:alert] = "There was an error recording your vote."
-      end
-    end
+  def create
+    @vote = @choice.votes.create!(user: current_user)
+    
+    flash[:notice] = "Your vote was successfully cast!"
+
     redirect_to poll_path(@poll) 
   end
 
@@ -30,5 +25,10 @@ class VotesController < ApplicationController
 
   def user_already_voted
     !current_user.can_vote_for?(@poll.id)
+  end
+
+  def handle_errror(exception)
+    flash[:alert] = "#{exception.message}"
+    redirect_to poll_path(@poll)
   end
 end
