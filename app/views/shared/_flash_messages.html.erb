@@ -5,11 +5,11 @@
 <% end %>
 
 <%= javascript_tag do %>
-  $(document).ready(function() {
-    if ($('#flash-message').length > 0) {
+  $(function() {
+    if ($('#flash-message').length) {
       setTimeout(function() {
         $('#flash-message').fadeOut();
-      }, 3000);
+      }, 2000);
     }
   });
 <% end %>

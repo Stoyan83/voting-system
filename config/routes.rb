@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    sessions: 'users/sessions'
-  }
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+
+  devise_scope :user do
+    post '/quick_login', to: 'users/sessions#quick_login', as: :quick_login
+  end
 
   root to: 'home#show'
 

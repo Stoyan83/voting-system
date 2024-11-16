@@ -3,6 +3,16 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  def quick_login
+    user = User.find_by(email: params[:email])
+    if user
+      sign_in(user)
+      redirect_to root_path, notice: "Logged in as #{user.email}"
+    else
+      redirect_to new_user_session_path, alert: "User not found."
+    end
+  end
+  
   # GET /resource/sign_in
   # def new
   #   super

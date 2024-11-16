@@ -11,3 +11,8 @@ en:
       models:
         vote:
           unique_vote: "with email %{email} has already voted for this choice"
+  votes:
+    create:
+      success: "Your vote was successfully cast!"
+      error: "An error occurred while casting your vote: %{message}"
+      already_voted: "You have already voted in this poll."

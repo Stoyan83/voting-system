@@ -6,6 +6,11 @@ To build containers and start the project in local environment
  $ docker-compose run app yarn install
  $ docker-compose run app yarn dev-server
 ```
+Seed the DB
+```bash
+$ docker-compose run app bin/rails db:seed
+```
+
 Visit:
 http://0.0.0.0:3000/
 
