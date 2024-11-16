@@ -14,3 +14,13 @@ The 'bin/rails' command is executed inside the container, allowing to run Rails 
 ```bash
 $ docker-compose run app bin/rails
 ```
+
+Run specs
+```bash
+$ docker-compose run app bundle exec rspec
+```
+
+Run Rubocop
+```bash
+$ docker-compose run app bundle exec rubocop
+```
