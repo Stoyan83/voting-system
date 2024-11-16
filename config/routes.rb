@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   root to: 'home#show'
 
-  match "/modern/*path", to: "home#index", via: :all
+  match '/modern/*path', to: 'home#index', via: :all
 
-  get "up" => "rails/health#show", as: :rails_health_check
-  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  get 'up' => 'rails/health#show', as: :rails_health_check
+  get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
+  get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
 end
