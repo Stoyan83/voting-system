@@ -10,7 +10,12 @@
       <% end %>
   
       <div class="text-center mt-4">
-        <%= form.submit "Vote", class: "btn btn-primary" %>
+        <%= form.submit t('votes.create.submit_button'), class: "btn btn-primary", data: { toggle: "tooltip", title: t('votes.create.tooltip') }, disabled: !current_user %>
+  
+        <% unless current_user %>
+          <p class="mt-2 text-muted"><%= t('votes.create.login_prompt') %></p>
+        <% end %>
       </div>
     </div>
   <% end %>
+  

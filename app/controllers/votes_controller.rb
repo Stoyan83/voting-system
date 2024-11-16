@@ -7,8 +7,10 @@ class VotesController < ApplicationController
   def create
     if already_voted?
       flash[:alert] = I18n.t('votes.create.already_voted')
+      redirect_to poll_path(@poll)
+      return
     else
-      create_vote
+      @choice.votes.create!(user: current_user)
       flash[:notice] = I18n.t('votes.create.success')
     end
 
@@ -24,10 +26,6 @@ class VotesController < ApplicationController
 
   def already_voted?
     !current_user.can_vote_for?(@poll.id)
-  end
-
-  def create_vote
-    @choice.votes.create!(user: current_user)
   end
 
   def handle_error(exception)
