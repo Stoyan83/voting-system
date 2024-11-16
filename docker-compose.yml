@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    command: ["sh", "-c", "yarn build:css:compile && yarn build --watch & ./bin/rails server -b 0.0.0.0"]
+    command: ["sh", "-c", "./bin/rails server -b 0.0.0.0"]
     volumes:
       - ".:/app"
     ports:
@@ -11,19 +11,11 @@ services:
     depends_on:
       - db
     working_dir: /app
-    networks:
-      - app-network
 
   db:
     image: nouchka/sqlite3:latest
     volumes:
       - db:/app/db
-    networks:
-      - app-network
 
 volumes:
   db:
-
-networks:
-  app-network:
-    driver: bridge
