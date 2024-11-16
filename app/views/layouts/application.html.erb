@@ -22,6 +22,8 @@
     <% unless controller.controller_name == 'home' && controller.action_name == 'index' %>
       <%= render 'shared/navbar' %>
     <% end %>
+    <%= render 'shared/flash_messages' %>
+
     <%= yield %>
   </body>
 </html>

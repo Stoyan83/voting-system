@@ -1,0 +1,15 @@
+<% if flash[:notice] || flash[:alert] %>
+  <div class="alert <%= 'alert-success' if flash[:notice] %><%= 'alert-danger' if flash[:alert] %> fixed-top alert-dismissible fade show" id="flash-message">
+    <%= flash[:notice] || flash[:alert] %>
+  </div>
+<% end %>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    if ($('#flash-message').length > 0) {
+      setTimeout(function() {
+        $('#flash-message').fadeOut();
+      }, 3000);
+    }
+  });
+<% end %>
