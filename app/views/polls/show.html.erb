@@ -5,7 +5,7 @@
 
     <%= render 'shared/breadcrumb', home_link: 'Home', current_link: 'Vote' %>
 
-    <h1 class="text-center mb-4 text-primary"><%= @poll.title %></h1>
+    <h1 class="text-center mb-4 text-primary text-wrap w-100" style="word-wrap: break-word; overflow-wrap: break-word"><%= @poll.title %></h1>
     <p class="text-center text-muted"><%= @poll.description %></p>
 
     <div class="row justify-content-center">
@@ -13,7 +13,7 @@
         <div class="col-md-6 mb-3">
           <div class="card border-primary">
             <div class="card-body">
-              <div class="form-check">
+              <div class="form-check" style="white-space: normal;">
                 <%= radio_button_tag :choice_id, choice.id, (current_user&.voted_for?(choice.id)), id: "choice_#{choice.id}", class: "form-check-input", disabled: !current_user %>
                 <%= label_tag "choice_#{choice.id}", choice.content, class: "form-check-label" %>
               </div>

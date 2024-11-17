@@ -11,12 +11,14 @@
         <div class="card shadow-sm d-flex flex-column h-100">
           <div class="card-body d-flex flex-column">
             <div class="d-flex justify-content-between align-items-center">
-              <h3 class="card-title text-primary mb-0"><%= poll.title %></h3>
+              <h3 class="card-title text-primary mb-0 text-truncate" style="max-width: calc(100% - 30px);">
+                <%= poll.title %>
+              </h3>
               <% if current_user && !current_user&.can_vote_for?(poll.id) %>
                 <i class="bi bi-check-circle-fill text-success"></i>
               <% end %>
             </div>
-            <p class="card-text text-muted"><%= poll.description %></p>
+            <p class="card-text text-truncate text-muted"><%= poll.description %></p>
 
             <div class="d-flex justify-content-between align-items-center mt-auto">
               <p class="text-muted mb-0">
@@ -27,11 +29,11 @@
             </div>
 
             <div class="mt-4">
-            <div class="btn-group w-100" role="group" aria-label="Poll Actions">
-              <%= link_to 'Vote', poll_path(poll), class: 'btn btn-outline-primary btn-sm w-50' %>
-              <%= link_to 'Show Result', chart_poll_path(poll), class: 'btn btn-outline-secondary btn-sm w-50' %>
-            </div>
-          </div> 
+              <div class="btn-group w-100" role="group" aria-label="Poll Actions">
+                <%= link_to 'Vote', poll_path(poll), class: 'btn btn-outline-primary btn-sm w-50' %>
+                <%= link_to 'Show Result', chart_poll_path(poll), class: 'btn btn-outline-secondary btn-sm w-50' %>
+              </div>
+            </div> 
           </div>
         </div>
       </div>
