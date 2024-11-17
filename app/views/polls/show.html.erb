@@ -13,6 +13,7 @@
     </nav>
 
     <h1 class="text-center mb-4 text-primary"><%= @poll.title %></h1>
+    <p class="text-center text-muted"><%= @poll.description %></p>
 
     <div class="row justify-content-center">
       <% @poll.choices.each_with_index do |choice, index| %>

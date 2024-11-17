@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1
 
+# Use only for development
 ARG RUBY_VERSION=3.3.5
 FROM ruby:$RUBY_VERSION-slim
 
