@@ -4,13 +4,3 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
-
-<%= javascript_tag do %>
-  $(function() {
-    if ($('#flash-message').length) {
-      setTimeout(function() {
-        $('#flash-message').fadeOut();
-      }, 3000);
-    }
-  });
-<% end %>

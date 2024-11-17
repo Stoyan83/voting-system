@@ -1,6 +1,8 @@
 <%= form_with url: poll_votes_path(@poll.id), method: :post, class: "vote-form" do |form| %>
   <div class="container mt-5">
-    
+     
+    <%= render 'shared/vote_modal' %>
+
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">

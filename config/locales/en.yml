@@ -1,21 +1,26 @@
 en:
-  navbar:
-    voting_system: "Voting System"
-    toggle_navigation: "Toggle navigation"
-    home: "Home"
-    sign_out: "Sign Out"
-    sign_in: "Sign In"
-    modern_view: "Modern View"
   activerecord:
     errors:
       models:
         vote:
           unique_vote: "with email %{email} has already voted for this choice"
+  navbar:
+    home: "Home"
+    modern_view: "Modern View"
+    sign_in: "Sign In"
+    sign_out: "Sign Out"
+    toggle_navigation: "Toggle navigation"
+    voting_system: "Voting System"
+  polls:
+    vote_modal:
+      body: "You cannot vote again for this poll. Thank you for your participation."
+      close_button: "Close"
+      title: "You have already voted for this poll"
   votes:
     create:
-      success: "Your vote was successfully cast!"
-      error: "An error occurred while casting your vote: %{message}"
       already_voted: "You have already voted in this poll."
-      submit_button: "Vote"
-      tooltip: "Click to cast your vote!"
+      error: "An error occurred while casting your vote: %{message}"
       login_prompt: "You need to log in to vote."
+      submit_button: "Vote"
+      success: "Your vote was successfully cast!"
+      tooltip: "Click to cast your vote!"
