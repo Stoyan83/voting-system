@@ -3,7 +3,7 @@
 
     <%= render 'shared/vote_modal' %>
 
-    <%= render 'shared/breadcrumb', home_link: 'Polls', current_link: 'Vote'%>
+    <%= render 'shared/breadcrumb', home_link: 'Home', current_link: 'Vote' %>
 
     <h1 class="text-center mb-4 text-primary"><%= @poll.title %></h1>
     <p class="text-center text-muted"><%= @poll.description %></p>
@@ -25,9 +25,6 @@
 
     <div class="mt-4 d-flex justify-content-between align-items-center">
       <%= form.submit t('votes.create.submit_button'), class: "btn btn-outline-primary btn-sm", data: { toggle: "tooltip", title: t('votes.create.tooltip') }, disabled: !current_user, style: "width: auto;" %>
-       <% if current_user && @poll.created_by?(current_user.id) %>
-          <%= link_to 'Edit Poll', edit_poll_path(@poll), class: 'btn btn-secondary btn-sm ms-3' %> <!-- Changed to secondary button and aligned with margin -->
-        <% end %>
       <%= link_to 'Show Results', chart_poll_path(@poll), class: 'btn btn-outline-secondary btn-sm' %>
     </div>
 
@@ -38,3 +35,12 @@
     <% end %>
   </div>
 <% end %>
+
+<div class="container mt-5">
+  <% if current_user && @poll.created_by?(current_user&.id) %>
+    <div class="d-flex justify-content-between align-items-center">
+      <%= link_to 'Edit Poll', edit_poll_path(@poll), class: 'btn btn-secondary btn-sm' %>
+      <%= button_to 'Delete Poll', poll_path(@poll.id), method: :delete, data: { confirm: 'Are you sure you want to delete this poll?' }, class: 'btn btn-danger btn-sm ms-3' %>
+    </div>
+  <% end %>
+</div>

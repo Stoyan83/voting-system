@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   match '/modern/*path', to: 'home#index', via: :all
 
   resources :polls do
-    resources :votes, only: [:create]
+    resources :votes, only: [:create, :destroy]
 
     get 'chart', on: :member
   end

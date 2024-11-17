@@ -1,9 +1,10 @@
 class PollsController < ApplicationController
   MINIMUM_CHOICES = 2
 
-  before_action :authenticate_user!, only: [:new, :create, :edit]
-  before_action :set_poll, only: [:edit, :update, :show, :chart]
-  before_action :authorize_poll_creator, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
+  before_action :set_poll, only: [:edit, :update, :show, :chart, :destroy]
+  before_action :authorize_poll_creator, only: [:edit, :update, :destroy]
+
   def show; end
 
   def index
@@ -36,6 +37,14 @@ class PollsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    if @poll.created_by?(current_user.id) && @poll.destroy
+      redirect_to polls_path, notice: 'Poll was successfully deleted.'
+    else
+      redirect_to polls_path, alert: 'Poll could not be deleted.'
+    end
+  end  
 
   def chart
     @choices = @poll.choices.includes(:votes)
