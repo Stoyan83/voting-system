@@ -3,8 +3,7 @@ class PollsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_poll, only: [:edit, :update, :show, :chart]
-  before_action :authorize_poll_creator, only: [:edit, :update]  # Added authorization check for edit and update actions
-
+  before_action :authorize_poll_creator, only: [:edit, :update]
   def show; end
 
   def index

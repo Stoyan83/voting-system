@@ -14,15 +14,12 @@
   
     <div class="choices-container">
       <%= form.fields_for :choices do |choice_form| %>
-        <div class="choice-field mb-3 <%= 'new-choice' if choice_form.object.new_record? %>">
+        <div class="choice-field mb-3 <%= 'new-choice' %>">
           <div class="input-group">
-            <%= choice_form.text_field :content, class: "form-control form-control-sm", placeholder: choice_form.object.new_record? ? "Enter a choice here" : choice_form.object.content %>
-  
-            <% if choice_form.object.new_record? %>
+            <%= choice_form.text_field :content, class: "form-control form-control-sm", placeholder: choice_form.object.new_record? ? "Enter a choice here" : choice_form.object.content %> 
               <div class="input-group-append">
                 <%= link_to 'Remove', '#', class: 'btn btn-danger ms-2 remove_fields' %>
-              </div>
-            <% end %>
+              </div>       
           </div>
         </div>
       <% end %>
