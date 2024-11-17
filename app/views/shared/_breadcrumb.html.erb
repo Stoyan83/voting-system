@@ -1,0 +1,14 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <!-- Home breadcrumb with dynamic link -->
+    <li class="breadcrumb-item">
+      <%= link_to (home_link || 'Home'), root_path %>
+    </li>
+    
+    <% if current_link %>
+      <li class="breadcrumb-item active" aria-current="page">
+        <%= current_link %>
+      </li>
+    <% end %>
+  </ol>
+</nav>

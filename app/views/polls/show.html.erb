@@ -1,21 +1,9 @@
 <%= form_with url: poll_votes_path(@poll.id), method: :post, class: "vote-form" do |form| %>
   <div class="container mt-5">
-    
+
     <%= render 'shared/vote_modal' %>
 
-<%= form_with url: poll_votes_path(@poll.id), method: :post, class: "vote-form" do |form| %>
-  <div class="container mt-5">
-    
-    <%= render 'shared/vote_modal' %>
-
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <%= link_to 'Home', root_path %>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">Vote</li>
-      </ol>
-    </nav>
+    <%= render 'shared/breadcrumb', home_link: 'Polls', current_link: 'Vote'%>
 
     <h1 class="text-center mb-4 text-primary"><%= @poll.title %></h1>
     <p class="text-center text-muted"><%= @poll.description %></p>
@@ -35,41 +23,7 @@
       <% end %>
     </div>
 
-    <!-- Updated Flexbox Section for Buttons in One Row -->
-    <div class="mt-4 d-flex justify-content-between align-items-center">
-      <%= form.submit t('votes.create.submit_button'), class: "btn btn-outline-primary btn-sm", data: { toggle: "tooltip", title: t('votes.create.tooltip') }, disabled: !current_user, style: "width: auto;" %>
-      
-      <!-- Show Results Link -->
-      <%= link_to 'Show Results', chart_poll_path(@poll), class: 'btn btn-outline-secondary btn-sm' %>
-    </div>
-
-    <% unless current_user %>
-      <div class="mt-2 d-flex align-items-center" style="justify-content: flex-start;">
-        <%= link_to 'Login', new_user_session_path, class: 'btn btn-link p-0' %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-
-    <h1 class="text-center mb-4 text-primary"><%= @poll.title %></h1>
-    <p class="text-center text-muted"><%= @poll.description %></p>
-
-    <div class="row justify-content-center">
-      <% @poll.choices.each_with_index do |choice, index| %>
-        <div class="col-md-6 mb-3">
-          <div class="card border-primary">
-            <div class="card-body">
-              <div class="form-check">
-                <%= radio_button_tag :choice_id, choice.id, (current_user&.voted_for?(choice.id)), id: "choice_#{choice.id}", class: "form-check-input", disabled: !current_user %>
-                <%= label_tag "choice_#{choice.id}", choice.content, class: "form-check-label" %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <!-- Updated Flexbox Section for Buttons in One Row -->
+    <!-- Buttons in One Row -->
     <div class="mt-4 d-flex justify-content-between align-items-center">
       <%= form.submit t('votes.create.submit_button'), class: "btn btn-outline-primary btn-sm", data: { toggle: "tooltip", title: t('votes.create.tooltip') }, disabled: !current_user, style: "width: auto;" %>
       <%= link_to 'Show Results', chart_poll_path(@poll), class: 'btn btn-outline-secondary btn-sm' %>
