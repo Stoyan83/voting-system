@@ -9,7 +9,6 @@ user_data = [
 
 users = User.create!(user_data.map { |user| user.merge(password: '123456', password_confirmation: '123456') })
 
-
 poll_data = [
   { title: 'Best Coffee', description: 'What is your favorite type of coffee?', choices: ['Espresso', 'Latte', 'Cappuccino', 'Americano'] },
   { title: 'Best Vacation Spot', description: 'Where would you like to go for vacation?', choices: ['Paris', 'Tokyo', 'New York', 'Sydney'] },
@@ -19,7 +18,7 @@ poll_data = [
 ]
 
 poll_data.each do |poll|
-  created_poll = Poll.create!(title: poll[:title], description: poll[:description])
+  created_poll = Poll.create!(title: poll[:title], description: poll[:description], creator_id: users.first.id)
   created_poll.choices.create!(poll[:choices].map { |choice| { content: choice } })
 end
 

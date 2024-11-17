@@ -4,7 +4,6 @@ class PollsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_poll, only: [:edit, :update, :show]
 
-  
   def show; end
 
   def index
@@ -17,7 +16,7 @@ class PollsController < ApplicationController
   end
 
   def create
-    @poll = Poll.new(poll_params)
+    @poll = Poll.new(poll_params.merge(creator_id: current_user.id))
   
     if @poll.save
       redirect_to @poll, notice: 'Poll was successfully created.'
@@ -47,6 +46,6 @@ class PollsController < ApplicationController
   end
 
   def poll_params
-    params.require(:poll).permit(:title, :description, choices_attributes: [:id, :content, :_destroy])
+    params.require(:poll).permit(:title, :description, choices_attributes: [:content, :_destroy])
   end
 end

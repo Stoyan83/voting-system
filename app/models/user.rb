@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :votes
+  has_many :polls, foreign_key: 'creator_id', dependent: :destroy
   has_many :choices, through: :votes, source: :votable, source_type: 'Choice'
 
   def can_vote_for?(poll_id)
