@@ -4,6 +4,7 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   def quick_login
+    # USE ONLY IN DEV MODE !!!
     user = User.find_by(email: params[:email])
     if user
       sign_in(user)

@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <%= link_to 'Home', root_path %>  <!-- Link to Home page -->
+          <%= link_to 'Home', root_path %>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Vote</li>
       </ol>
@@ -13,10 +13,10 @@
     <h1 class="text-center mb-4 text-primary"><%= @poll.title %></h1>
 
     <div class="row justify-content-center">
-      <% @poll.choices.each do |choice| %>
+      <% @poll.choices.each_with_index do |choice, index| %>
         <div class="col-md-6 mb-3">
           <div class="form-check">
-            <%= radio_button_tag :choice_id, choice.id, false, id: "choice_#{choice.id}", class: "form-check-input" %>
+            <%= radio_button_tag :choice_id, choice.id, (index == 0), id: "choice_#{choice.id}", class: "form-check-input", disabled: !current_user %>
             <%= label_tag "choice_#{choice.id}", choice.content, class: "form-check-label" %>
           </div>
         </div>
@@ -27,8 +27,14 @@
       <%= form.submit t('votes.create.submit_button'), class: "btn btn-outline-primary btn-sm", data: { toggle: "tooltip", title: t('votes.create.tooltip') }, disabled: !current_user, style: "width: auto;" %>
 
       <% unless current_user %>
-        <p class="mt-4 ms-3 text-muted"><%= t('votes.create.login_prompt') %></p> 
+        <p class="mt-4 ms-3 text-muted"><%= t('votes.create.login_prompt') %></p>
       <% end %>
     </div>
+
+    <% unless current_user %>
+      <div class="mt-2 d-flex align-items-center" style="justify-content: flex-start;">
+        <%= link_to 'Login', new_user_session_path, class: 'btn btn-link p-0' %>
+      </div>
+    <% end %>
   </div>
 <% end %>
