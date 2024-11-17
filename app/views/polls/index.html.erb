@@ -27,11 +27,11 @@
             </div>
 
             <div class="mt-4">
-              <div class="btn-group w-100" role="group" aria-label="Poll Actions">
-                <%= link_to 'Vote', '#', class: 'btn btn-outline-primary btn-sm w-50', onclick: "window.location.href='/polls/#{poll.id}'" %>
-                <%= link_to 'Show Results', '#', class: 'btn btn-outline-secondary btn-sm w-50' %>
-              </div>
+            <div class="btn-group w-100" role="group" aria-label="Poll Actions">
+              <%= link_to 'Vote', poll_path(poll), class: 'btn btn-outline-primary btn-sm w-50' %>
+              <%= link_to 'Show Result', chart_poll_path(poll), class: 'btn btn-outline-secondary btn-sm w-50' %>
             </div>
+          </div> 
           </div>
         </div>
       </div>

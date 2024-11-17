@@ -2,7 +2,7 @@ class PollsController < ApplicationController
   MINIMUM_CHOICES = 2
 
   before_action :authenticate_user!, only: [:new, :create, :edit]
-  before_action :set_poll, only: [:edit, :update, :show]
+  before_action :set_poll, only: [:edit, :update, :show, :chart]
 
   def show; end
 
@@ -34,6 +34,20 @@ class PollsController < ApplicationController
     else
       flash[:alert] = @poll.errors.full_messages.join(", ")
       render :edit
+    end
+  end
+
+  def chart
+    @choices = @poll.choices.includes(:votes)
+    @chart_data = {}
+
+    @choices.reverse_each do |choice|
+      @chart_data[choice.content] = choice.votes.count
+    end
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @chart_data }
     end
   end
   

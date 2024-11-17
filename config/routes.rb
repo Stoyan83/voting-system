@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :polls do
     resources :votes, only: [:create]
+
+    get 'chart', on: :member
   end
 
   get 'up' => 'rails/health#show', as: :rails_health_check

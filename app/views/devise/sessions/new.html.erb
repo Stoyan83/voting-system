@@ -36,7 +36,7 @@
             <h3 class="text-center">Quick Login</h3>
             <p class="text-muted text-center mt-3">Because we love our developers!</p>
             <div class="d-flex flex-wrap justify-content-center">
-              <% User.all.each do |user| %>
+              <% User.limit(6).each do |user| %>
                 <div class="col-3 m-1">
                   <%= button_to user.email, quick_login_path(email: user.email), method: :post, class: "btn btn-secondary w-100" %>
                 </div>

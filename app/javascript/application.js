@@ -1,8 +1,8 @@
 
-import "@hotwired/turbo-rails";
-import "./controllers";
-import * as bootstrap from "bootstrap";
-import "../frontend/index.js";
+import "@hotwired/turbo-rails"
+import "./controllers"
+import * as bootstrap from "bootstrap"
+import "../frontend/index.js"
 
 
 $(document).ready(function () {
