@@ -5,11 +5,11 @@ Rails.application.routes.draw do
     post '/quick_login', to: 'users/sessions#quick_login', as: :quick_login
   end
 
-  root to: 'home#show'
+  root to: 'polls#index'
 
   match '/modern/*path', to: 'home#index', via: :all
 
-  resources :polls do
+  resources :polls, only: [:index, :show] do
     resources :votes, only: [:create]
   end
 

@@ -1,2 +1,7 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: " > ";
+}
