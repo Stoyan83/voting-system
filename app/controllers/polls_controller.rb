@@ -3,6 +3,7 @@ class PollsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_poll, only: [:edit, :update, :show, :chart]
+  before_action :authorize_poll_creator, only: [:edit, :update]  # Added authorization check for edit and update actions
 
   def show; end
 
@@ -12,22 +13,22 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
-    MINIMUM_CHOICES.times { @poll.choices.build } 
+    MINIMUM_CHOICES.times { @poll.choices.build }
   end
 
   def create
     @poll = Poll.new(poll_params.merge(creator_id: current_user.id))
-  
+
     if @poll.save
       redirect_to @poll, notice: 'Poll was successfully created.'
     else
       flash[:alert] = @poll.errors.full_messages.join(", ")
-      redirect_to new_poll_path 
+      redirect_to new_poll_path
     end
   end
 
   def edit; end
-  
+
   def update
     if @poll.update(poll_params)
       redirect_to @poll, notice: 'Poll was successfully updated.'
@@ -44,18 +45,26 @@ class PollsController < ApplicationController
     @choices.reverse_each do |choice|
       @chart_data[choice.content] = choice.votes.count
     end
-    
+
     respond_to do |format|
       format.html
       format.json { render json: @chart_data }
     end
   end
-  
+
   private
+
   def set_poll
     @poll = Poll.find_by(id: params[:id])
     if @poll.nil?
       redirect_to polls_path, alert: 'Poll not found.'
+    end
+  end
+
+
+  def authorize_poll_creator
+    unless @poll.created_by?(current_user.id)
+      redirect_to polls_path, alert: 'You are not authorized to edit this poll.'
     end
   end
 
