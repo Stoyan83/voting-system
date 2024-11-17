@@ -69,6 +69,6 @@ class PollsController < ApplicationController
   end
 
   def poll_params
-    params.require(:poll).permit(:title, :description, choices_attributes: [:content, :_destroy])
+    params.require(:poll).permit(:title, :description, choices_attributes: [:id, :content, :_destroy])
   end
 end
