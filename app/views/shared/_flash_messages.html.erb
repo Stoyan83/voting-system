@@ -1,6 +1,7 @@
 <% if flash[:notice] || flash[:alert] %>
-  <div class="alert <%= 'alert-success' if flash[:notice] %><%= 'alert-danger' if flash[:alert] %> fixed-top alert-dismissible fade show" id="flash-message">
+  <div class="alert <%= 'alert-success' if flash[:notice] %><%= 'alert-danger' if flash[:alert] %> fixed-top alert-dismissible fade show" id="flash-message" role="alert">
     <%= flash[:notice] || flash[:alert] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
 
@@ -9,7 +10,7 @@
     if ($('#flash-message').length) {
       setTimeout(function() {
         $('#flash-message').fadeOut();
-      }, 2000);
+      }, 3000);
     }
   });
 <% end %>
