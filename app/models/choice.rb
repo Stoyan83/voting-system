@@ -1,6 +1,6 @@
 class Choice < ApplicationRecord
   belongs_to :poll
-  has_many :votes
+  has_many :votes, as: :votable
   has_many :users, through: :votes
 
   validates :content, presence: true, length: { maximum: 255 }

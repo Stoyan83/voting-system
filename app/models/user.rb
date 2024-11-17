@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :votes
-  has_many :choices, through: :votes
+  has_many :choices, through: :votes, source: :votable, source_type: 'Choice'
 
   def can_vote_for?(poll_id)
     !choices.by_poll(poll_id).exists?

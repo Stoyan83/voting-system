@@ -10,7 +10,7 @@ class VotesController < ApplicationController
       redirect_to poll_path(@poll)
       return
     else
-      @choice.votes.create!(user: current_user)
+      @choice.votes.create!(user_id: current_user.id)
       flash[:notice] = I18n.t('votes.create.success')
     end
 

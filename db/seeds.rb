@@ -1,43 +1,26 @@
-poll1 = Poll.create(
-  title: 'What is your favorite programming language?',
-  description: 'Choose your preferred programming language.'
-)
+user_data = [
+  { email: 'user1@example.com' },
+  { email: 'user2@example.com' },
+  { email: 'user3@example.com' },
+  { email: 'user4@example.com' },
+  { email: 'user5@example.com' },
+  { email: 'user6@example.com' }
+]
 
-choice1_1 = poll1.choices.create(content: 'Ruby')
-choice1_2 = poll1.choices.create(content: 'Python')
-choice1_3 = poll1.choices.create(content: 'JavaScript')
+users = User.create!(user_data.map { |user| user.merge(password: '123456', password_confirmation: '123456') })
 
-poll2 = Poll.create(
-  title: 'What is your favorite web framework?',
-  description: 'Choose your preferred web framework.'
-)
 
-choice2_1 = poll2.choices.create(content: 'Ruby on Rails')
-choice2_2 = poll2.choices.create(content: 'Django')
-choice2_3 = poll2.choices.create(content: 'React')
+poll_data = [
+  { title: 'Best Coffee', description: 'What is your favorite type of coffee?', choices: ['Espresso', 'Latte', 'Cappuccino', 'Americano'] },
+  { title: 'Best Vacation Spot', description: 'Where would you like to go for vacation?', choices: ['Paris', 'Tokyo', 'New York', 'Sydney'] },
+  { title: 'Best Sports Team', description: 'Which sports team do you support?', choices: ['FC Barcelona', 'Los Angeles Lakers', 'New York Yankees', 'Manchester United'] },
+  { title: 'Favorite Animal', description: 'Which animal do you think is the best?', choices: ['Dog', 'Cat', 'Elephant', 'Dolphin'] },
+  { title: 'Favorite Programming Framework', description: 'Which programming framework do you prefer?', choices: ['Ruby on Rails', 'React', 'Django', 'Angular'] }
+]
 
-users_data = (1..10).map { |i| { email: "user#{i}@example.com", password: '123456' } }
-users = User.create(users_data)
-
-group_1_users = users.first(5)
-group_2_users = users.last(5)
-
-group_1_users.each_with_index do |user, index|
-  choice = case index
-           when 0, 1 then choice1_1
-           when 2, 3 then choice1_2
-           else choice1_3
-           end
-  user.votes.create(choice: choice)
+poll_data.each do |poll|
+  created_poll = Poll.create!(title: poll[:title], description: poll[:description])
+  created_poll.choices.create!(poll[:choices].map { |choice| { content: choice } })
 end
 
-group_2_users.each_with_index do |user, index|
-  choice = case index
-           when 0, 1 then choice2_1
-           when 2, 3 then choice2_2
-           else choice2_3
-           end
-  user.votes.create(choice: choice)
-end
-
-puts '🎉 The development database has been successfully seeded with initial data! 🎉'
+puts '🎉 The development database has been successfully seeded! 🎉'
