@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   match '/modern/*path', to: 'home#index', via: :all
 
-  resources :polls, only: [:index, :show] do
+  resources :polls, only: [:index, :show, :new, :create] do
     resources :votes, only: [:create]
   end
 

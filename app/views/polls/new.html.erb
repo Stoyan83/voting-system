@@ -1,0 +1,32 @@
+<%= form_with(model: @poll, local: true) do |form| %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <h3>Choices</h3>
+
+  <%= form.fields_for :choices do |choice_form| %>
+    <div class="choice-field <%= 'new-choice' if choice_form.object.new_record? %>">
+      <%= choice_form.label :content, "Choice" %>
+      <%= choice_form.text_field :content, class: "choice-input", placeholder: choice_form.object.new_record? ? "Enter a choice here" : choice_form.object.content %>
+
+      <% if choice_form.object.new_record? %>
+        <%= link_to 'Remove', '#', class: 'remove_fields' %>  
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= link_to_add_fields "Add Choice", form, :choices %>
+
+  <div>
+    <%= form.submit "Create Poll" %>
+  </div>
+
+<% end %>

@@ -1,9 +1,7 @@
-// Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-import "./controllers"
-import * as bootstrap from "bootstrap"
-import "../frontend/index.js"
-
+import "@hotwired/turbo-rails";
+import "./controllers";
+import * as bootstrap from "bootstrap";
+import "../frontend/index.js";
 
 $(document).ready(function () {
     // Modal
@@ -15,11 +13,7 @@ $(document).ready(function () {
 
     // Navbar: React Route
     $('#switch-view-toggle').on('change', function () {
-        if ($(this).prop('checked')) {
-            window.location.href = '/modern/home';
-        } else {
-            window.location.href = '/';
-        }
+        window.location.href = $(this).prop('checked') ? '/modern/home' : '/';
     });
 
     // Flash messages
@@ -28,5 +22,32 @@ $(document).ready(function () {
         setTimeout(function () {
             flashMessage.fadeOut();
         }, 3000);
+    }
+});
+
+// Add fields to Poll
+$(document).on('click', '.add_fields', function (event) {
+    event.preventDefault();
+
+    const time = new Date().getTime();
+    const regexp = new RegExp($(this).data('id'), 'g');
+    const newFields = $(this).data('fields').replace(regexp, time);
+
+    $(this).before(newFields);
+
+    $(this).closest('form').find('.new-choice').each(function() {
+        $(this).find('.remove_fields').on('click', function(event) {
+            event.preventDefault();
+            $(this).closest('.choice-field').remove(); 
+        });
+    });
+});
+
+// Remove fields on click
+$(document).on('click', '.remove_fields', function (event) {
+    event.preventDefault();
+    
+    if ($(this).closest('.choice-field').hasClass('new-choice')) {
+        $(this).closest('.choice-field').remove();
     }
 });

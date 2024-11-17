@@ -2,12 +2,15 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><%= t('navbar.voting_system') %></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="<%= t('navbar.toggle_navigation') %>">
-    <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item active">
           <a class="nav-link" href="/"><%= t('navbar.home') %></a>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('navbar.create_poll'), new_poll_path, class: 'nav-link' %>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">
@@ -21,7 +24,7 @@
               <i class="bi bi-person-circle" style="font-size: 30px; width: 30px; height: 30px;"></i>
             <% end %>
           </a>
-          <ul class="dropdown-menu dropdown-menu-center p-0" aria-labelledby="profileDropdown" style="min-width: 80px; font-size: 14px; ">
+          <ul class="dropdown-menu dropdown-menu-center p-0" aria-labelledby="profileDropdown" style="min-width: 80px; font-size: 14px;">
             <% if user_signed_in? %>
               <li>
                 <%= button_to t('navbar.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item py-1 px-2' %>
