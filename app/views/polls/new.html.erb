@@ -1,12 +1,11 @@
 <%= form_with(model: @poll, local: true, class: 'container mt-4') do |form| %>
 
-  <!-- Poll Title -->
+
   <div class="mb-4">
     <%= form.label :title, class: 'form-label' %>
     <%= form.text_field :title, class: 'form-control form-control-sm' %>
   </div>
 
-  <!-- Poll Description -->
   <div class="mb-4">
     <%= form.label :description, class: 'form-label' %>
     <%= form.text_area :description, class: 'form-control form-control-sm', rows: 3 %>

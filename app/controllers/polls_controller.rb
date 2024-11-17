@@ -1,6 +1,8 @@
 class PollsController < ApplicationController
     MINIMUM_CHOICES = 2
 
+    before_action :authenticate_user!, only: [:new, :create]
+    
     def show
       @poll = Poll.find(params[:id])
     end
