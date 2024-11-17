@@ -1,36 +1,52 @@
 class PollsController < ApplicationController
-    MINIMUM_CHOICES = 2
+  MINIMUM_CHOICES = 2
 
-    before_action :authenticate_user!, only: [:new, :create]
-    
-    def show
-      @poll = Poll.find(params[:id])
-    end
+  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :set_poll, only: [:edit, :update, :show]
 
-    def index
-      @polls = Poll.order(created_at: :desc)
-    end
-
-    def new
-      @poll = Poll.new
-      MINIMUM_CHOICES.times { @poll.choices.build } 
-    end
   
-    def create
-      @poll = Poll.new(poll_params)
-    
-      if @poll.save
-        redirect_to @poll, notice: 'Poll was successfully created.'
-      else
-        flash[:alert] = @poll.errors.full_messages.join(", ")
-        redirect_to new_poll_path 
-      end
-    end
-    
-    private
+  def show; end
+
+  def index
+    @polls = Poll.order(created_at: :desc)
+  end
+
+  def new
+    @poll = Poll.new
+    MINIMUM_CHOICES.times { @poll.choices.build } 
+  end
+
+  def create
+    @poll = Poll.new(poll_params)
   
-    def poll_params
-      params.require(:poll).permit(:title, :description, choices_attributes: [:id, :content, :_destroy])
+    if @poll.save
+      redirect_to @poll, notice: 'Poll was successfully created.'
+    else
+      flash[:alert] = @poll.errors.full_messages.join(", ")
+      redirect_to new_poll_path 
+    end
+  end
+
+  def edit; end
+  
+  def update
+    if @poll.update(poll_params)
+      redirect_to @poll, notice: 'Poll was successfully updated.'
+    else
+      flash[:alert] = @poll.errors.full_messages.join(", ")
+      render :edit
     end
   end
   
+  private
+  def set_poll
+    @poll = Poll.find_by(id: params[:id])
+    if @poll.nil?
+      redirect_to polls_path, alert: 'Poll not found.'
+    end
+  end
+
+  def poll_params
+    params.require(:poll).permit(:title, :description, choices_attributes: [:id, :content, :_destroy])
+  end
+end
