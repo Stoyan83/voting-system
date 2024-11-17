@@ -16,7 +16,7 @@
       <% @poll.choices.each_with_index do |choice, index| %>
         <div class="col-md-6 mb-3">
           <div class="form-check">
-            <%= radio_button_tag :choice_id, choice.id, (index == 0), id: "choice_#{choice.id}", class: "form-check-input", disabled: !current_user %>
+            <%= radio_button_tag :choice_id, choice.id, (current_user&.voted_for?(choice.id)), id: "choice_#{choice.id}", class: "form-check-input", disabled: !current_user %>
             <%= label_tag "choice_#{choice.id}", choice.content, class: "form-check-label" %>
           </div>
         </div>

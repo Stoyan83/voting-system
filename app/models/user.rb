@@ -10,4 +10,8 @@ class User < ApplicationRecord
   def can_vote_for?(poll_id)
     !choices.by_poll(poll_id).exists?
   end
+
+  def voted_for?(choice_id)
+    choices.ids.include?(choice_id)
+  end
 end
