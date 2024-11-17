@@ -40,4 +40,4 @@ group_2_users.each_with_index do |user, index|
   user.votes.create(choice: choice)
 end
 
-puts 'Polls, choices, users, and votes have been created successfully!'
+puts '🎉 The development database has been successfully seeded with initial data! 🎉'

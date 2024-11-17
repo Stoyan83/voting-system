@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :choice do
       content { "Sample content" }
-      association :choosable, factory: :poll 
+      association :poll
   end
 end
