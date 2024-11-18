@@ -39,6 +39,7 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
   gem 'shoulda-matchers'
   gem 'letter_opener'
+  gem 'mailcatcher'
 end
 
 group :development do

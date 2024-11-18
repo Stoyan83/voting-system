@@ -43,6 +43,13 @@ services:
       - REDIS_URL=redis://redis:6379/0
     networks:
       - myapp-network
+  mailcatcher:
+    image: jeanberu/mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+    networks:
+      - myapp-network
 
 volumes:
   db:

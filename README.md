@@ -31,3 +31,6 @@ $ docker-compose up sidekiq
 ```
 Visit:
 http://0.0.0.0:3000/sidekiq
+
+To read mails afte you log in with one of the quicklogin options. Sidekiq should be running !
+Visit: http://127.0.0.1:1080
