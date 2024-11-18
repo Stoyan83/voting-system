@@ -5,8 +5,8 @@ import * as bootstrap from "bootstrap"
 import "../frontend/index.js"
 
 
+// Modal
 $(document).ready(function () {
-    // Modal
     const voteModalElement = $('#voteModal')[0];
     if (voteModalElement) {
         const voteModal = new bootstrap.Modal(voteModalElement);
@@ -14,13 +14,25 @@ $(document).ready(function () {
     }
 })
 
+// Navbar: React Route
 $(document).on('turbo:load', function () {
-    // Navbar: React Route
-    $('#switch-view-toggle').on('change', function () {
-        window.location.href = $(this).prop('checked') ? '/modern/home' : '/';
-    });
+    const $toggle = $('#switch-view-toggle');
+    const $label = $('label[for="switch-view-toggle"]');
+    const isModernView = window.location.pathname === '/modern/home';
 
-    // Flash messages
+    $toggle.prop('checked', isModernView);
+    $label.text(isModernView ? 'Old View' : 'Modern View');
+
+    $toggle.on('change', function () {
+        const isChecked = $toggle.prop('checked');
+        $label.text(isChecked ? 'Old View' : 'Modern View');
+        window.location.href = isChecked ? '/modern/home' : '/';
+    });
+});
+
+
+// Flash messages
+$(document).on('turbo:load', function () {
     const flashMessage = $('#flash-message');
     if (flashMessage.length) {
         setTimeout(function () {

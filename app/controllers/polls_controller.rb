@@ -8,7 +8,7 @@ class PollsController < ApplicationController
   def show; end
 
   def index
-    @polls = Poll.order(created_at: :desc).page(params[:page]).per(5)
+    @polls = Poll.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def new
