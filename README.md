@@ -12,13 +12,7 @@ $ docker-compose run app bin/rails db:seed
 ```
 
 Visit:
-http://0.0.0.0:3000/
-
-The 'bin/rails' command is executed inside the container, allowing to run Rails commands
-
-```bash
-$ docker-compose run app bin/rails
-```
+http://0.0.0.0:3000
 
 Run specs
 ```bash
@@ -29,3 +23,11 @@ Run Rubocop
 ```bash
 $ docker-compose run app bundle exec rubocop
 ```
+
+Run SIdekiq
+
+```bash
+$ docker-compose up sidekiq
+```
+Visit:
+http://0.0.0.0:3000/sidekiq

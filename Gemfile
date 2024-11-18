@@ -24,6 +24,10 @@ gem 'kaminari'
 # Charts
 gem 'chartkick'
 
+# Jobs and storage
+gem 'sidekiq', require: 'sidekiq/web'
+gem 'redis', '~> 4.0'
+
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
@@ -34,6 +38,7 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'shoulda-matchers'
+  gem 'letter_opener'
 end
 
 group :development do
