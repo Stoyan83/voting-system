@@ -1,3 +1,6 @@
+
+![Vote](https://github.com/user-attachments/assets/9c56c186-abbc-4472-be42-8ae4ca707328)
+
 To build containers and start the project in local environment
 
 ```bash
