@@ -26,7 +26,7 @@ gem 'chartkick'
 
 # Jobs and storage
 gem 'sidekiq', require: 'sidekiq/web'
-gem 'redis', '~> 4.0'
+gem 'redis', '~> 5.3'
 
 
 group :development, :test do
